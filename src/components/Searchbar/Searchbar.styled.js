@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const SearchForm = styled.form`
   position: relative;
+  width: 424px;
 `;
 
 export const Input = styled.input`
-  width: 424px;
+  width: 409px;
   height: 33px;
   font-size: 16px;
   outline: none;

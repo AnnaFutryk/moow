@@ -7,24 +7,27 @@ import HeaderIconsList from "../HeaderIconsList/HeaderIconsList";
 import Select from "react-select";
 
 const Header = () => {
+  const options = [
+    { value: "УКР", label: "УКР" },
+    { value: "ENG", label: "ENG" },
+  ];
   return (
     <HeaderWrap>
       <Logo />
       <LightBtn text={"Категорії"} width={"104px"} />
       <Searchbar />
-      <DarkBtn text={"Створити оголошення"} width={208} />
+      <DarkBtn text={"Створити оголошення"} width={"208px"} />
       <HeaderIconsList />
       <Select
-        options={[
-          { value: "УКР", label: "УКР" },
-          { value: "ENG", label: "ENG" },
-        ]}
+        options={options}
+        defaultValue={options[0]}
         styles={{
           control: (styles) => ({
             ...styles,
             padding: 0,
             margin: 0,
             height: "20px",
+
             border: "none",
             fontSize: "16px",
             appearance: "none",
@@ -42,6 +45,16 @@ const Header = () => {
           placeholder: (styles) => ({
             ...styles,
             color: "#171717",
+          }),
+          valueContainer: (styles) => ({
+            ...styles,
+            padding: 0,
+            margin: 0,
+          }),
+          indicatorsContainer: (styles) => ({
+            ...styles,
+            position: "absolute",
+            right: -30,
           }),
         }}
         components={{
