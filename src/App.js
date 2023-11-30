@@ -1,5 +1,13 @@
+import Header from "./components/Header/Header";
+import Order from "./components/Order/Order";
+
 function App() {
-  return <p>hello</p>;
+  return (
+    <>
+      <Header />
+      <Order />
+    </>
+  );
 }
 
 export default App;
