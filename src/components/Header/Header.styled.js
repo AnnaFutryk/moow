@@ -8,8 +8,9 @@ export const HeaderWrap = styled.header`
   display: flex;
   gap: 20px;
   align-items: center;
+  justify-content: center;
 
-  padding: 15px 30px;
+  padding-top: 15px;
   padding-bottom: 15px;
   z-index: 10;
 `;
