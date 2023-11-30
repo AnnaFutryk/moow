@@ -1,15 +1,22 @@
 {
   "files": {
-    "main.css": "/moow/static/css/main.e6c13ad2.css",
-    "main.js": "/moow/static/js/main.463188b4.js",
+    "main.css": "/moow/static/css/main.05700d81.css",
+    "main.js": "/moow/static/js/main.2393fc1c.js",
     "static/js/787.94acfafc.chunk.js": "/moow/static/js/787.94acfafc.chunk.js",
+    "static/media/logo.svg": "/moow/static/media/logo.d11c9895b0ed069db0a52735f4fc035f.svg",
+    "static/media/message.svg": "/moow/static/media/message.337b9b489d3c73113436c552b9b3cbfc.svg",
     "index.html": "/moow/index.html",
-    "main.e6c13ad2.css.map": "/moow/static/css/main.e6c13ad2.css.map",
-    "main.463188b4.js.map": "/moow/static/js/main.463188b4.js.map",
+    "static/media/bell.svg": "/moow/static/media/bell.bcfb9f595a64950fa08c8925f95ab01d.svg",
+    "static/media/user.svg": "/moow/static/media/user.f7118657ff119c810a70f5e0f00621b9.svg",
+    "static/media/buildings.svg": "/moow/static/media/buildings.1eec98ab74f8c15e493cff4604bc90e3.svg",
+    "static/media/message-square.svg": "/moow/static/media/message-square.adc21af87c6bb0f34fdc5c61d7d12a56.svg",
+    "static/media/search.svg": "/moow/static/media/search.956b0e6ff84db1331668e01f71041d8a.svg",
+    "main.05700d81.css.map": "/moow/static/css/main.05700d81.css.map",
+    "main.2393fc1c.js.map": "/moow/static/js/main.2393fc1c.js.map",
     "787.94acfafc.chunk.js.map": "/moow/static/js/787.94acfafc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.463188b4.js"
+    "static/css/main.05700d81.css",
+    "static/js/main.2393fc1c.js"
   ]
 }
