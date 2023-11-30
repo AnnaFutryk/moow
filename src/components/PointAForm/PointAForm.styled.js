@@ -73,7 +73,6 @@ export const Input = styled(Field)`
 
 export const InputWrapper = styled.div`
   position: relative;
-  width: 275px;
 `;
 
 export const Label = styled.label`
@@ -115,14 +114,14 @@ export const StyledLocationSvg = styled(LocationSVG)`
     display: block;
     position: absolute;
     bottom: 0;
-    right: 0px;
+    right: 6px;
   }
 `;
 
 export const SvgArrow = styled(ArrowSvg)`
   position: absolute;
   bottom: 0;
-  right: -8px;
+  right: 6px;
   @media screen and (min-width: 1280px) {
     display: none;
   }
