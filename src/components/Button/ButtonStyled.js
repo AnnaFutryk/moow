@@ -25,7 +25,7 @@ export const LightBtnStyled = styled.button`
 
 export const DarkBtnStyled = styled.button`
   width: ${(props) => props.width};
-  height: 40px;
+  min-height: 40px;
   padding: 10px 15px 10px 15px;
   color: #ebebeb;
   background-color: #171717;
