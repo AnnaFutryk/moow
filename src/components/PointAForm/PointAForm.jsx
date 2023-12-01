@@ -61,7 +61,7 @@ function PointAForm({ setPoint }) {
         <Title>Точка А</Title>
         <Formik
           initialValues={initialValues}
-          // onSelect={handleSelect}
+          onSelect={handleSelect}
           validationSchema={schema}
         >
           {({ values, errors, touched }) => (
