@@ -1,11 +1,15 @@
+import Map from "../Map/Map";
 import RouteFormList from "../RouteFormList/RouteFormList";
-import { Title } from "./Order.styled";
+import { Container, Title } from "./Order.styled";
 
 const Order = () => {
   return (
     <>
       <Title>Замовити</Title>
-      <RouteFormList />
+      <Container>
+        <RouteFormList />
+        <Map />
+      </Container>
     </>
   );
 };

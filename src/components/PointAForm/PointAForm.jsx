@@ -16,6 +16,8 @@ import {
   SvgArrow,
 } from "./PointAForm.styled";
 import DateInput from "./DatePicker.styled";
+import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
+import { getLatLng } from "react-google-places-autocomplete";
 
 const initialValues = {
   date: "",
@@ -37,7 +39,21 @@ const schema = Yup.object().shape({
     .matches(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, "Неправильний формат часу"),
 });
 
-function PointAForm() {
+function PointAForm({ setPoint }) {
+  const handleSelect = async (val) => {
+    setValue(val, false);
+    clearSuggestions();
+
+    const results = await getGeocode({ address: val });
+    const { lat, lng } = await getLatLng(results[0]);
+    setPoint({ lat, lng });
+  };
+  const {
+    value,
+    setValue,
+    suggestions: { status, data },
+    clearSuggestions,
+  } = usePlacesAutocomplete();
   return (
     <div>
       <Container>
@@ -45,7 +61,7 @@ function PointAForm() {
         <Title>Точка А</Title>
         <Formik
           initialValues={initialValues}
-          // onSubmit={handleSubmit}
+          // onSelect={handleSelect}
           validationSchema={schema}
         >
           {({ values, errors, touched }) => (
@@ -67,6 +83,9 @@ function PointAForm() {
                   <Input
                     type="text"
                     name="address"
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    onBlur={clearSuggestions}
                     error={errors.address && touched.address ? "true" : "false"}
                     success={
                       values.address && !errors.address ? "true" : "false"
@@ -74,6 +93,15 @@ function PointAForm() {
                   />
                   <StyledLocationSvg />
                   <SvgArrow />
+                  {status === "OK" && (
+                    <ul>
+                      {data.map((suggestion) => (
+                        <li key={suggestion.place_id}>
+                          {suggestion.description}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   <ErrorMessage
                     name="address"
                     render={(message) => <ErrorText>{message}</ErrorText>}

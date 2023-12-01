@@ -10,3 +10,10 @@ export const Title = styled.h1`
   font-weight: 700;
   line-height: normal;
 `;
+
+export const Container = styled.div`
+  display: flex;
+  gap: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+`;
