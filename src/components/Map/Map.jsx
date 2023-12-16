@@ -1,6 +1,10 @@
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap } from "@react-google-maps/api";
 import { useCallback, useMemo, useRef, useState } from "react";
-import { Wrapp } from "./Map.styled";
+import PointAForm from "../PointAForm/PointAForm";
+import RouteFormItem from "../RouteFormItem/RouteFormItem";
+import LightBtn from "../Button/LightBtn";
+import { Title, Wrapp } from "./Map.styled";
+import { FormBlock } from "../Map/Map.styled";
 
 const Map = () => {
   const [point, setPoint] = useState();
@@ -19,18 +23,26 @@ const Map = () => {
 
   return (
     <Wrapp>
-      <LoadScript
-        googleMapsApiKey={process.env.REACT_APP_API_KEY}
-        libraries={["places"]}
-      >
-        <GoogleMap
-          zoom={10}
-          center={center}
-          mapContainerStyle={{ width: "480px", height: "433px" }}
-          options={options}
-          onLoad={onLoad}
+      <FormBlock>
+        <Title>Маршрут</Title>
+        <PointAForm
+          setPoint={(position) => {
+            setPoint(position);
+            mapRef.current?.panTo(position);
+          }}
         />
-      </LoadScript>
+        <RouteFormItem title={"Точка B"} />
+        <RouteFormItem title={"Точка C"} />
+        <LightBtn text={"Додати ще одну точку"} width={"211px"} />
+      </FormBlock>
+
+      <GoogleMap
+        zoom={10}
+        center={center}
+        mapContainerStyle={{ width: "480px", height: "433px" }}
+        options={options}
+        onLoad={onLoad}
+      />
     </Wrapp>
   );
 };
