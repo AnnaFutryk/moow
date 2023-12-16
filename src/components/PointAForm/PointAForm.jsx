@@ -14,10 +14,20 @@ import {
   Label,
   StyledLocationSvg,
   SvgArrow,
+  ComboboxInputStyled,
 } from "./PointAForm.styled";
 import DateInput from "./DatePicker.styled";
-import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
-import { getLatLng } from "react-google-places-autocomplete";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxList,
+  ComboboxOption,
+  ComboboxPopover,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
 
 const initialValues = {
   date: "",
@@ -40,6 +50,14 @@ const schema = Yup.object().shape({
 });
 
 function PointAForm({ setPoint }) {
+  const {
+    ready,
+    value,
+    setValue,
+    suggestions: { status, data },
+    clearSuggestions,
+  } = usePlacesAutocomplete();
+
   const handleSelect = async (val) => {
     setValue(val, false);
     clearSuggestions();
@@ -48,12 +66,7 @@ function PointAForm({ setPoint }) {
     const { lat, lng } = await getLatLng(results[0]);
     setPoint({ lat, lng });
   };
-  const {
-    value,
-    setValue,
-    suggestions: { status, data },
-    clearSuggestions,
-  } = usePlacesAutocomplete();
+
   return (
     <div>
       <Container>
@@ -80,28 +93,26 @@ function PointAForm({ setPoint }) {
                 </InputWrapper>
                 <InputWrapper>
                   <Label htmlFor="address">Адреса</Label>
-                  <Input
-                    type="text"
-                    name="address"
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    onBlur={clearSuggestions}
-                    error={errors.address && touched.address ? "true" : "false"}
-                    success={
-                      values.address && !errors.address ? "true" : "false"
-                    }
-                  />
+                  <Combobox onSelect={handleSelect}>
+                    <ComboboxInputStyled
+                      value={value}
+                      onChange={(e) => setValue(e.target.value)}
+                      disabled={!ready}
+                    />
+                    <ComboboxPopover>
+                      <ComboboxList>
+                        {status === "OK" &&
+                          data.map(({ place_id, description }) => (
+                            <ComboboxOption
+                              key={place_id}
+                              value={description}
+                            />
+                          ))}
+                      </ComboboxList>
+                    </ComboboxPopover>
+                  </Combobox>
                   <StyledLocationSvg />
                   <SvgArrow />
-                  {status === "OK" && (
-                    <ul>
-                      {data.map((suggestion) => (
-                        <li key={suggestion.place_id}>
-                          {suggestion.description}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                   <ErrorMessage
                     name="address"
                     render={(message) => <ErrorText>{message}</ErrorText>}
