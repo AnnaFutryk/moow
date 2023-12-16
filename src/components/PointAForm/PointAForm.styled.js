@@ -2,6 +2,7 @@ import { Form, Field } from "formik";
 import styled from "styled-components";
 import { ReactComponent as LocationSVG } from "../../images/location.svg";
 import { ReactComponent as ArrowSvg } from "../../images/arrow.svg";
+import { ComboboxInput } from "@reach/combobox";
 
 export const Container = styled.div`
   display: flex;
@@ -49,6 +50,29 @@ export const StyledForm = styled(Form)`
 `;
 
 export const Input = styled(Field)`
+  position: relative;
+  width: 261px;
+  display: block;
+  padding: 0;
+  border: none;
+  border-bottom: 2px solid #665cd1;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  color: #262626;
+  background-color: transparent;
+  transition: border 250ms linear;
+
+  @media screen and (min-width: 1280px) {
+    width: 247px;
+    padding-bottom: 3px;
+    font-size: 17px;
+    line-height: 1.56;
+  }
+`;
+
+export const ComboboxInputStyled = styled(ComboboxInput)`
   position: relative;
   width: 261px;
   display: block;
