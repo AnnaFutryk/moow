@@ -1,4 +1,4 @@
-import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import { useCallback, useMemo, useRef, useState } from "react";
 import PointAForm from "../PointAForm/PointAForm";
 import RouteFormItem from "../RouteFormItem/RouteFormItem";
@@ -31,8 +31,20 @@ const Map = () => {
             mapRef.current?.panTo(position);
           }}
         />
-        <RouteFormItem title={"Точка B"} />
-        <RouteFormItem title={"Точка C"} />
+        <RouteFormItem
+          title={"Точка B"}
+          setPoint={(position) => {
+            setPoint(position);
+            mapRef.current?.panTo(position);
+          }}
+        />
+        <RouteFormItem
+          title={"Точка C"}
+          setPoint={(position) => {
+            setPoint(position);
+            mapRef.current?.panTo(position);
+          }}
+        />
         <LightBtn text={"Додати ще одну точку"} width={"211px"} />
       </FormBlock>
 
@@ -42,7 +54,9 @@ const Map = () => {
         mapContainerStyle={{ width: "480px", height: "433px" }}
         options={options}
         onLoad={onLoad}
-      />
+      >
+        {point && <Marker position={point} />}
+      </GoogleMap>
     </Wrapp>
   );
 };
