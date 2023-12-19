@@ -13,6 +13,18 @@ import {
   StyledLocationSvg,
   SvgArrow,
 } from "./RouteFormItem.styled";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxList,
+  ComboboxOption,
+  ComboboxPopover,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
+import { ComboboxInputStyled } from "../PointAForm/PointAForm.styled";
 
 const initialValues = {
   address: "",
@@ -27,7 +39,24 @@ const schema = Yup.object().shape({
     .typeError("Введіть коректне числове значення"),
 });
 
-function RouteFormItem({ title }) {
+function RouteFormItem({ title, setPoint }) {
+  const {
+    ready,
+    value,
+    setValue,
+    suggestions: { status, data },
+    clearSuggestions,
+  } = usePlacesAutocomplete();
+
+  const handleSelect = async (val) => {
+    setValue(val, false);
+    clearSuggestions();
+
+    const results = await getGeocode({ address: val });
+    const { lat, lng } = await getLatLng(results[0]);
+    setPoint({ lat, lng });
+  };
+
   return (
     <div>
       <Container>
@@ -38,12 +67,21 @@ function RouteFormItem({ title }) {
             <StyledForm>
               <InputWrapper>
                 <Label htmlFor="address">Адреса</Label>
-                <Input
-                  type="text"
-                  name="address"
-                  error={errors.address && touched.address ? "true" : "false"}
-                  success={values.address && !errors.address ? "true" : "false"}
-                />
+                <Combobox onSelect={handleSelect}>
+                  <ComboboxInputStyled
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    disabled={!ready}
+                  />
+                  <ComboboxPopover>
+                    <ComboboxList>
+                      {status === "OK" &&
+                        data.map(({ place_id, description }) => (
+                          <ComboboxOption key={place_id} value={description} />
+                        ))}
+                    </ComboboxList>
+                  </ComboboxPopover>
+                </Combobox>
                 <StyledLocationSvg />
                 <SvgArrow />
                 <ErrorMessage
