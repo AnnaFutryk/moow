@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/moow/static/css/main.eb4e5cdb.css",
-    "main.js": "/moow/static/js/main.41933e2d.js",
+    "main.js": "/moow/static/js/main.e71dfd86.js",
     "static/js/787.94acfafc.chunk.js": "/moow/static/js/787.94acfafc.chunk.js",
     "static/media/location.svg": "/moow/static/media/location.938cffe43650d60c49bad2246b0a5a9c.svg",
     "static/media/logo.svg": "/moow/static/media/logo.d11c9895b0ed069db0a52735f4fc035f.svg",
@@ -15,11 +15,11 @@
     "static/media/search.svg": "/moow/static/media/search.956b0e6ff84db1331668e01f71041d8a.svg",
     "static/media/arrow.svg": "/moow/static/media/arrow.e3ca1ea7c9d0d1b16be0b74154fbc850.svg",
     "main.eb4e5cdb.css.map": "/moow/static/css/main.eb4e5cdb.css.map",
-    "main.41933e2d.js.map": "/moow/static/js/main.41933e2d.js.map",
+    "main.e71dfd86.js.map": "/moow/static/js/main.e71dfd86.js.map",
     "787.94acfafc.chunk.js.map": "/moow/static/js/787.94acfafc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eb4e5cdb.css",
-    "static/js/main.41933e2d.js"
+    "static/js/main.e71dfd86.js"
   ]
 }
